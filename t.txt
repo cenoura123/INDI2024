@@ -1,0 +1,56 @@
+const container = document.getElementById("chat");
+const inputMessage = document.getElementById("prompt");
+
+
+function typeText(text, element, callback) {
+    const paragraph = document.createElement("p");
+    paragraph.classList.add('chat-mgs');
+    element.appendChild(paragraph);
+    let index = 0;
+
+    function typeCharacter() {
+        if (index < text.length) {
+            paragraph.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeCharacter, 25);
+        } else if (callback) {
+            callback();
+        }
+    }
+
+    typeCharacter();
+}
+
+function addMessage() {
+    const messageText = inputMessage.value.trim();
+    
+    if (messageText) {
+        inputMessage.value = "";
+        typeText(`Você: ${messageText}`, container, () => {
+            setTimeout(() => {
+                let resposta = generateResponseFromText(messageText); // Chama a função para gerar resposta
+                console.log(resposta)
+            }, 500);
+        });
+    }
+}
+
+function botResponse(message, element) {
+    const paragraph = document.createElement("p");
+    paragraph.classList.add("chat-mgs");
+
+    const botWord = document.createElement("span");
+    botWord.textContent = "Indi: ";
+    botWord.classList.add("bot-word");
+
+    paragraph.appendChild(botWord);
+    element.appendChild(paragraph);
+    
+    typeText(message, paragraph, null);
+}
+
+inputMessage.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        addMessage();
+    }
+});

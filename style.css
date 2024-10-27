@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+    text-decoration: none;
+}
+
+body {
+    background-color: #292927;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: all .55s ease;
+}
+
+.animation-body-index {
+    opacity: 0;
+}
+
+.logo-main-index{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & a {
+        font-size: 150px;
+
+        background: rgb(245,25,25);
+        background: linear-gradient(56deg, rgba(245,25,25,1) 0%, rgba(245,204,25,1) 65%);
+        -webkit-background-clip: text; /* Faz o background clipe ao texto */
+        -webkit-text-fill-color: transparent; /* Torna o preenchimento do texto transparente */
+    }
+}
